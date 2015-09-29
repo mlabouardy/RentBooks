@@ -21,26 +21,37 @@ public class Customers {
 		return name;
 	}
 
-	public String statement() {
-		double totalAmount = 0;
-		int frequentRenterPoints = 0;
-		Iterator<Rental> it=_rentals.iterator();
-		String result = "Rental Record for " + getName() + "\n";
-		while(it.hasNext()){
-			Rental r=it.next();
-			double thisAmount=r.calcAllAmount();
-			frequentRenterPoints+=r.getRentalPoints();
-			result += "\t" + r.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + " \n";
-			totalAmount += thisAmount;
+	public double getTotalAmount(){
+		double s=0;
+		for(Rental r:_rentals){
+			s+=r.calcAllAmount();
 		}
-		result += "Amount owned is " + String.valueOf(totalAmount) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+		return s;
+	}
+	
+	public int getTotalRentalPoints(){
+		int s=0;
+		for(Rental r:_rentals){
+			s+=r.getRentalPoints();
+		}
+		return s;
+	}
+	
+	public String statement() {
+		String result = "Rental Record for " + getName() + "\n";
+		for(Rental currentRental: _rentals){
+			result += "\t" + currentRental.getMovie().getTitle() + "\t" + String.valueOf(currentRental.getRentalPoints()) + " \n";
+		}
+		result += "Amount owned is " + String.valueOf(getTotalAmount()) + "\n";
+		result += "You earned " + String.valueOf(getTotalRentalPoints()) + " frequent renter points";
 		return result;
 	}
 	
-	
-
-	
+	public String statementHTML(){
+		String content="<html><head></head><body>";
+		content+=statement()+"</body></html>";
+		return content;
+	}
 
 	
 }
