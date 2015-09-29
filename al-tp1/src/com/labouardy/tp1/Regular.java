@@ -14,6 +14,7 @@ public class Regular extends PriceCodeIt{
 		return 1;
 	}
 
+	@Override
 	public PriceCode clone() throws CloneNotSupportedException{
 		return (PriceCode) super.clone();
 	}

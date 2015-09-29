@@ -20,7 +20,9 @@ public abstract class PriceCodeIt implements PriceCode{
 		return s;
 	}
 	
+	@Override
 	public PriceCode clone() throws CloneNotSupportedException{
+		
 		return (PriceCode) super.clone();
 	}
 	

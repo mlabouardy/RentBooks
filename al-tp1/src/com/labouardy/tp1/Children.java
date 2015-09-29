@@ -13,6 +13,7 @@ public class Children extends PriceCodeIt{
 		return 1;
 	}
 	
+	@Override
 	public PriceCode clone() throws CloneNotSupportedException{
 		return (PriceCode) super.clone();
 	}

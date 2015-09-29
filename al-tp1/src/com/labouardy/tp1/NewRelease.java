@@ -10,9 +10,10 @@ public class NewRelease extends PriceCodeIt{
 	
 	@Override
 	public int computeRentalPoints(int nbrOfDays) {
-		return (nbrOfDays>1)?1:2;
+		return (nbrOfDays>1)?2:1;
 	}
 
+	@Override
 	public PriceCode clone() throws CloneNotSupportedException{
 		return (PriceCode) super.clone();
 	}
