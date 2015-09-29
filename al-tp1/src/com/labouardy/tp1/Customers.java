@@ -37,6 +37,7 @@ public class Customers {
 		return s;
 	}
 	
+	
 	public String statement() {
 		String result = "Rental Record for " + getName() + "\n";
 		for(Rental currentRental: _rentals){
@@ -47,11 +48,21 @@ public class Customers {
 		return result;
 	}
 	
-	public String statementHTML(){
-		String content="<html><head></head><body>";
-		content+=statement()+"</body></html>";
-		return content;
+	public String statement(Builder b) {
+		b.startDocument();
+		b.addText("Rental Record for " + getName());
+		b.newLine();
+		for(Rental currentRental: _rentals){
+			b.addText("\t" + currentRental.getMovie().getTitle() + "\t" + String.valueOf(currentRental.getRentalPoints()));
+			b.newLine();
+		}
+		b.addText("Amount owned is " + String.valueOf(getTotalAmount()));
+		b.newLine();
+		b.addText("You earned " + String.valueOf(getTotalRentalPoints()) + " frequent renter points");
+		b.newLine();
+		b.endDocument();
+		return b.getContent();
 	}
-
+	
 	
 }

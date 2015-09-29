@@ -1,23 +1,27 @@
 package com.labouardy.tp1;
 
 public class Movie {
-	public static final int CHILDRENS = 2;
-	public static final int REGULAR = 0;
-	public static final int NEW_RELEASE = 1;
+	public static final PriceCode CHILDRENS = new Children();
+	public static final PriceCode REGULAR = new Regular();
+	public static final PriceCode NEW_RELEASE = new NewRelease();
 
 	private String title;
-	private int priceCode;
+	private PriceCode priceCode;
 
-	public Movie(String title, int priceCode) {
+	public Movie(String title, PriceCode priceCode) {
 		this.title = title;
-		this.priceCode = priceCode;
+		try {
+			this.priceCode = priceCode.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public int getPriceCode() {
+	public PriceCode getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
+	public void setPriceCode(PriceCode priceCode) {
 		this.priceCode = priceCode;
 	}
 
